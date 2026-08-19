@@ -8,11 +8,75 @@ datasource db {
   provider = "mysql"
 }
 
-model product {
+enum OrderStatus {
+  delivered
+  received
+  processing
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String?   @db.VarChar(255)
+  products Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id          Int            @id @default(autoincrement())
+  name        String?        @db.VarChar(255)
+  description String?        @db.Text
+  price       Float?
+  categoryId  Int?
+  category    Category?      @relation(fields: [categoryId], references: [id])
+  orderItems  OrderItem[]
+  images      ProductImage[]
+
+  @@map("products")
+}
+
+model Customer {
   id      Int     @id @default(autoincrement())
-  name    String  @db.VarChar(100)
-  price   Decimal @db.Decimal(10, 0)
-  picture String  @db.VarChar(150)
+  name    String? @db.VarChar(255)
+  address String? @db.VarChar(500)
+  phone   String? @db.VarChar(20)
+  orders  Order[]
+
+  @@map("customers")
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  date        DateTime?
+  customerId  Int?
+  status      OrderStatus?
+  totalAmount Float?
+  customer    Customer?   @relation(fields: [customerId], references: [id])
+  orderItems  OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int
+  price     Float
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@map("order_items")
+}
+
+model ProductImage {
+  id         Int      @id @default(autoincrement())
+  productId  Int
+  imageName  String   @db.Text
+  createdAt  DateTime @default(now())
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_images")
 }
 
 model User {
