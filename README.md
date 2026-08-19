@@ -1,17 +1,23 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
-
-First, run the development server:
+## วิธีการใช้งาน Source Code
 
 ```bash
+เปลี่ยนชื่อจาก .env.example เป็น .env
+
+npm install
+
+npx prisma generate
+
 npm run dev
+
+# or 
+
+npm run lint
+
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+npm run build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
