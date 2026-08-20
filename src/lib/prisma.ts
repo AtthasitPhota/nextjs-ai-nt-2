@@ -3,9 +3,9 @@ import "dotenv/config"
 import { PrismaMariaDb } from "@prisma/adapter-mariadb"
 import { PrismaClient } from "../../generated/prisma/client"
 
-const adapter = new PrismaMariaDb(process.env.DATABASE_URL!)
-
 const prismaClientSingleton = () => {
+  console.log("Creating new PrismaClient instance...");
+  const adapter = new PrismaMariaDb(process.env.DATABASE_URL!)
   return new PrismaClient({ adapter })
 }
 
