@@ -5,6 +5,7 @@ import { connection } from "next/server";
 // http://localhost:3000/product
 export default async function ProductPage() {
   await connection(); // signals this is a dynamic route
+  await prisma.$connect();
   const products = await prisma.product.findMany({
     include: { images: { take: 1 } },
   });
@@ -16,6 +17,7 @@ export default async function ProductPage() {
     description: p.description,
     price: Number(p.price),
     picture: p.images[0]?.imageName ?? null,
+    categoryId: p.categoryId ?? null,
   }))
 
   return (

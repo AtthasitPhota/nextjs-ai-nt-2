@@ -38,7 +38,7 @@ const FeaturesProduct = ({ products }: Props) => {
               <div className="relative aspect-4/5 w-full overflow-hidden rounded-t-2xl">
                 <ProductImage
                   name={product.name}
-                  src={product.picture ? `/product-image/${product.picture}` : null}
+                  src={`/product-image/${product.categoryId}.jpg`}
                 />
                 <span className="absolute left-3 top-3 rounded-full bg-secondary px-3 py-1 text-xs font-bold text-secondary-foreground shadow-sm">
                   SALE
