@@ -34,6 +34,15 @@ model product_images {
   product   product  @relation(fields: [productId], references: [id])
 }
 
+model customer {
+  id      Int     @id @default(autoincrement())
+  name    String  @db.VarChar(255)
+  address String? @db.VarChar(500)
+  phone   String? @db.VarChar(20)
+
+  @@map("customers")
+}
+
 model User {
   id            String    @id
   name          String    @db.Text
