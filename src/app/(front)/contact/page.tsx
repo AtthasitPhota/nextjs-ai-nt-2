@@ -15,7 +15,7 @@ import {
 } from "@remixicon/react";
 
 export const metadata: Metadata = {
-  title: "ติดต่อเรา — ShopVibe",
+  title: "Contact Us — ShopVibe",
   description: "ติดต่อร้าน ShopVibe ผ่านแบบฟอร์ม, โทรศัพท์ หรืออีเมล",
 };
 
@@ -120,7 +120,7 @@ export default function ContactPage() {
           Get in Touch
         </span>
         <h1 className="mt-2 font-heading text-4xl font-bold tracking-[0.01em] sm:text-5xl">
-          ติดต่อเรา
+          Contact Us
         </h1>
         <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
           สอบถามข้อมูลเพิ่มเติมหรือติดต่อทีมงานของเรา
